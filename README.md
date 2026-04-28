@@ -1,11 +1,11 @@
-# 🛡️ SIEM ThreatWatch
+#SIEM ThreatWatch
 ### Intelligent Real-Time Threat Detection System for Windows
 
 A mini SIEM (Security Information and Event Management) system that collects **real Windows Event Logs** from your machine, detects threats using rule-based logic, generates alerts, auto-blocks suspicious sources, and displays everything on a live dark-theme web dashboard.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 smei proj/
@@ -23,7 +23,7 @@ smei proj/
 
 ---
 
-## ⚙️ Requirements
+## Requirements
 
 | Requirement | Version |
 |---|---|
@@ -34,7 +34,7 @@ smei proj/
 
 ---
 
-## 🚀 Setup & Run
+## Setup & Run
 
 ### 1. Install dependencies
 ```bash
@@ -56,7 +56,7 @@ http://127.0.0.1:5000
 
 ---
 
-## 🔍 How It Works
+## How It Works
 
 ### Log Collection (Real-Time)
 - On startup, reads **all existing** events from `System` and `Application` Windows Event Logs
@@ -97,7 +97,7 @@ Any alert with severity `Critical` automatically adds the source provider to the
 
 ---
 
-## 🖥️ Dashboard Features
+## Dashboard Features
 
 | Section | Description |
 |---|---|
@@ -118,7 +118,7 @@ Press `Escape` or click outside the modal to close it.
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 ```sql
 -- All collected Windows events
@@ -133,7 +133,7 @@ blocked (id, source, blocked_at, reason)
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -151,7 +151,7 @@ blocked (id, source, blocked_at, reason)
 
 ---
 
-## ⚠️ Notes
+## Notes
 
 - **Security log** (`Event ID 4625`, `4648`, etc.) requires **Administrator** privileges. Run as admin to capture login-related events.
 - `System` and `Application` logs work without admin rights.
@@ -160,12 +160,12 @@ blocked (id, source, blocked_at, reason)
 
 ---
 
-## 🛑 Stop the Server
+## Stop the Server
 
 Press `Ctrl + C` in the terminal window running `python app.py`.
 
 ---
 
-## 👤 Author
+## Author
 
 Built as a SOC/SIEM learning project demonstrating real-time Windows log analysis, threat detection, and security dashboarding.
