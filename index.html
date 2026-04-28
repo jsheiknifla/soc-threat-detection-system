@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIEM ThreatWatch</title>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- ── MODAL ── -->
+<div id="modal-overlay" class="modal-overlay hidden" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">🛡️</span>
+      <span class="logo-text">SIEM <span class="accent">ThreatWatch</span></span>
+    </div>
+    <div class="header-right">
+      <span class="live-badge">● LIVE</span>
+      <span id="clock" class="clock"></span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ── STAT CARDS ── -->
+  <section class="cards-grid">
+    <div class="card card-blue">
+      <div class="card-icon">📋</div>
+      <div>
+        <div class="card-label">Total Logs</div>
+        <div class="card-value" id="s-total">—</div>
+      </div>
+    </div>
+    <div class="card card-cyan">
+      <div class="card-icon">ℹ️</div>
+      <div>
+        <div class="card-label">Info Events</div>
+        <div class="card-value" id="s-info">—</div>
+      </div>
+    </div>
+    <div class="card card-orange">
+      <div class="card-icon">⚠️</div>
+      <div>
+        <div class="card-label">Errors / Warnings</div>
+        <div class="card-value" id="s-errors">—</div>
+      </div>
+    </div>
+    <div class="card card-yellow">
+      <div class="card-icon">🚨</div>
+      <div>
+        <div class="card-label">Total Alerts</div>
+        <div class="card-value" id="s-alerts">—</div>
+      </div>
+    </div>
+    <div class="card card-red">
+      <div class="card-icon">🔴</div>
+      <div>
+        <div class="card-label">Critical Alerts</div>
+        <div class="card-value" id="s-critical">—</div>
+      </div>
+    </div>
+    <div class="card card-purple">
+      <div class="card-icon">🚫</div>
+      <div>
+        <div class="card-label">Blocked Sources</div>
+        <div class="card-value" id="s-blocked">—</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CHARTS ── -->
+  <section class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">📈 Event Timeline (by minute)</div>
+      <canvas id="timelineChart" height="90"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">🚨 Alerts by Type</div>
+      <canvas id="alertTypeChart" height="90"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📂 Logs by Source</div>
+      <canvas id="sourceChart" height="90"></canvas>
+    </div>
+  </section>
+
+  <!-- ── ALERTS TABLE ── -->
+  <section class="table-section">
+    <div class="section-header">🚨 Recent Alerts <span class="hint">(click row for details)</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Time</th><th>Source</th><th>Type</th><th>Description</th><th>Severity</th><th>Event ID</th></tr></thead>
+        <tbody id="alerts-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── BLOCKED TABLE ── -->
+  <section class="table-section">
+    <div class="section-header">🚫 Blocked Sources <span class="hint">(click row for details)</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Source</th><th>Blocked At</th><th>Reason</th></tr></thead>
+        <tbody id="blocked-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── LOGS TABLE ── -->
+  <section class="table-section">
+    <div class="section-header">📋 Live System Log Feed <span class="hint">(click row for details)</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Time</th><th>Log</th><th>Event ID</th><th>Level</th><th>Provider</th><th>Message</th></tr></thead>
+        <tbody id="logs-body"></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<script src="/static/js/dashboard.js"></script>
+</body>
+</html>
